@@ -167,7 +167,7 @@ function AboutViewModel(app)
   });
 }
 
-function TankManagerViewModelss()
+function TankManagerViewModel()
 {
     var self = this;
 

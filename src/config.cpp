@@ -144,9 +144,9 @@ bool ConfigClass::serialize(JsonObject& root, bool longNames)
   }} while(false)
 #define GET_VALUE_AS_STRING(val) do { \
   if(root.containsKey(val ## _LONG_NAME)) { \
-    set_ ## val(root[val ## _LONG_NAME].asString()); \
+    set_ ## val(root[val ## _LONG_NAME].as<char*>()); \
   } else if(root.containsKey(val ## _SHORT_NAME)) { \
-    set_ ## val(root[val ## _SHORT_NAME].asString()); \
+    set_ ## val(root[val ## _SHORT_NAME].as<char*>()); \
   }} while(false)
 
 bool ConfigClass::deserialize(JsonObject& root)
