@@ -8,7 +8,9 @@ cat $LIB_DIR/jquery.min.js \
     $LIB_DIR/knockout.mapping.min.js \
     $LIB_DIR/sammy.min.js \
     $LIB_DIR/bootstrap.min.js \
+    $LIB_DIR/bootstrap-slider.min.js \
     > $SRC_DIR/lib.js
 
 cat $LIB_DIR/bootstrap.min.css \
+    $LIB_DIR/bootstrap-slider.min.css \
     > $SRC_DIR/lib.css

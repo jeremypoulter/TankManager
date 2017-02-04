@@ -94,7 +94,11 @@ function ConfigViewModel()
     ko.mapping.fromJS({
         'wifiClientSsid': '',
         'wifiClientPassword': '',
-        'wifiHostname': 'espserial'
+        'wifiHostname': 'tankman',
+        'mqttHostname': '',
+        'mqttTopic': 'fishtank',
+        'mqttUsername': '',
+        'mqttPassword': ''
     }, {}, self);
 
     self.fetching = ko.observable(false);
@@ -167,6 +171,42 @@ function AboutViewModel(app)
   });
 }
 
+function SceenViewModel(app)
+{
+  var self = this;
+
+  self.id = ko.observable(1);
+  self.name = ko.observable('');
+  self.fadeIn = ko.observable(10);
+  self.fadeOut = ko.observable(10);
+
+  self.ch1 = ko.observable(0);
+  self.ch2 = ko.observable(0);
+  self.ch3 = ko.observable(0);
+
+  self.save = function () {
+  }
+}
+
+function EnviromentViewModel(app)
+{
+  var self = this;
+
+}
+
+function TankViewModel(app)
+{
+  var self = this;
+
+  self.sceen = ko.observable(new SceenViewModel(app));
+  self.enviroment = ko.observable(new EnviromentViewModel(app));
+
+  app.isTank.subscribe(function (selected) {
+      if (selected) {
+      }
+  });
+}
+
 function TankManagerViewModel()
 {
     var self = this;
@@ -175,6 +215,9 @@ function TankManagerViewModel()
     self.tab = ko.observable(null);
 
     // Derived data
+    self.isTank = ko.pureComputed(function () {
+        return this.tab() == 'tank';
+    }, this);
     self.isSettings = ko.pureComputed(function () {
         return this.tab() == 'settings';
     }, this);
@@ -185,10 +228,13 @@ function TankManagerViewModel()
     // Behaviours
     self.goToTab = function (tab) { location.hash = tab; };
 
+    // Tank
+    self.tank = ko.observable(new TankViewModel(self));
+
     // Settings
     self.settings = ko.observable(new SettingsViewModel(self));
 
-    // Aboud
+    // About
     self.about = ko.observable(new AboutViewModel(self));
 
     // Client-side routes
@@ -205,6 +251,11 @@ function TankManagerViewModel()
 
     sammy.run();
 }
+
+$(".fader").slider({
+	reversed : true
+});
+
 
 // Activates knockout.js
 var tankman = new TankManagerViewModel();

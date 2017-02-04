@@ -77,7 +77,7 @@ void setup() {
   DEBUG_BEGIN(115200);
   DBUGLN("");
   DBUGLN("");
-  DBUGF("ESPlug %s", ESCAPEQUOTE(VERSION));
+  DBUGF("Tank Manager %s", ESCAPEQUOTE(VERSION));
   DBUGLN("");
 
   SPIFFS.begin();
