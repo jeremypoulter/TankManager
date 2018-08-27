@@ -29,11 +29,13 @@ private:
   String softAP_password;
   IPAddress apIP;
   IPAddress netMask;
+  int apClients;
 
   // WiFi Client
   String client_ssid;
   String client_password;
   String hostname;
+  int client_disconnects;
 
   // Are we in client mode or AP
   bool client;
@@ -46,10 +48,16 @@ private:
   // WiFi connection LED state
   int wifiLedState;
 
+  // WiFi library events
+  void onStationModeGotIP(const WiFiEventStationModeGotIP &event);
+  void onStationModeDisconnected(const WiFiEventStationModeDisconnected &event);
+
+  // Access Point management
   void startAP();
   unsigned long loopAP();
   void stopAP();
 
+  // Client mode management
   void startClient();
   unsigned long loopClient();
   void stopClient();
@@ -64,6 +72,7 @@ public:
   unsigned long loop(MicroTasks::WakeReason reason);
 
   void StartScan();
+
   void onScanComplete(MicroTasks::EventListener& eventListener);
 };
 
