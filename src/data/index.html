@@ -54,40 +54,53 @@
         </div>
 
         <table class="table">
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th></th>
-          </tr>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody data-bind="foreach: scenes">
+            <tr data-bind="click: $root.showScene(id)">
+              <td data-bind="text: id"></td>
+              <td data-bind="text: name"></td>
+              <td data-bind="text: fadeIn"></td>
+              <td data-bind="text: fadeOut"></td>
+              <td data-bind="text: ch1"></td>
+              <td data-bind="text: ch2"></td>
+              <td data-bind="text: ch3"></td>
+            </tr>
+          </tbody>
         </table>
 
-        <div class="panel-body" data-bind="with: sceen">
+        <div class="panel-body" data-bind="with: scene">
           <div class="row">
             <div class="col-md-8">
               <form class="form-horizontal">
                 <div class="form-group">
-                  <label for="sceenId" class="col-sm-4 control-label">#</label>
+                  <label for="sceneId" class="col-sm-4 control-label">#</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="sceenId" placeholder="1" data-bind="textInput: id">
+                    <input type="text" class="form-control" id="sceneId" placeholder="1" data-bind="textInput: id">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="sceenName" class="col-sm-4 control-label">Name</label>
+                  <label for="sceneName" class="col-sm-4 control-label">Name</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="sceenName" placeholder="name" data-bind="textInput: name">
+                    <input type="text" class="form-control" id="sceneName" placeholder="name" data-bind="textInput: name">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="sceenFadeIn" class="col-sm-4 control-label">Fade in</label>
+                  <label for="sceneFadeIn" class="col-sm-4 control-label">Fade in</label>
                   <div class="col-sm-6">
-                    <input type="number" class="form-control" id="sceenFadeIn" placeholder="10" data-bind="textInput: fadeIn">
+                    <input type="number" class="form-control" id="sceneFadeIn" placeholder="10" data-bind="textInput: fadeIn">
                   </div>
                   <div class="col-sm-2">seconds</div>
                 </div>
                 <div class="form-group">
-                  <label for="sceenFadeOut" class="col-sm-4 control-label">Fade out</label>
+                  <label for="sceneFadeOut" class="col-sm-4 control-label">Fade out</label>
                   <div class="col-sm-6">
-                    <input type="number" class="form-control" id="sceenFadeOut" placeholder="10" data-bind="textInput: fadeOut">
+                    <input type="number" class="form-control" id="sceneFadeOut" placeholder="10" data-bind="textInput: fadeOut">
                   </div>
                   <div class="col-sm-2">seconds</div>
                 </div>
@@ -113,7 +126,9 @@
         </div>
         <div class="panel-body">
           <div class="row">
-
+            <div class="col-md-12">
+              Tempurature <span data-bind="text: temp"></span>
+            </div>
           </div>
         </div>
       </div>
