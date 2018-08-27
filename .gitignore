@@ -39,3 +39,4 @@
 .vscode/settings.json
 
 src/debug.log
+.vscode/.browse.c_cpp.db*
